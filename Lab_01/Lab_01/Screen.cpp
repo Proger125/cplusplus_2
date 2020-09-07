@@ -112,7 +112,10 @@ void Screen::ButtonClick(int clickType) {
     }
     case 1004:
     case 1014: {
-      controller.StackTop(type);
+      int element = controller.StackTop(type);
+      char buf[10];
+      _itoa_s(element, buf, 10);
+      SetWindowTextA(this->bothLable, buf);
       break;
     }
     case 1005:
