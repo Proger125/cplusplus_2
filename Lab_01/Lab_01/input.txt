@@ -1,0 +1,7 @@
+Create
+Clear
+IsEmpty
+Size
+Top
+Pop
+Push
