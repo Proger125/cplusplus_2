@@ -141,10 +141,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
       screenWidth = LOWORD(lParam);
       screenHeight = HIWORD(lParam);
     } break;
-    case WM_CREATE: {
-    }
     case WM_COMMAND: {
       int wmId = LOWORD(wParam);
+      if (wmId >= 996 && wmId <= 1017) {
+        screen.ButtonClick(wmId);
+        UpdateWindow(hWnd);
+      }
       // Разобрать выбор в меню:
       switch (wmId) {
         case IDM_ABOUT:
@@ -162,7 +164,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
       HDC hdc = BeginPaint(hWnd, &ps);
       // TODO: Добавьте сюда любой код прорисовки, использующий HDC...
       screen.SetElements(hdc, screenWidth, screenHeight);
-      UpdateWindow(hWnd);
+      //UpdateWindow(hWnd);
       EndPaint(hWnd, &ps);
     } break;
     case WM_DESTROY:

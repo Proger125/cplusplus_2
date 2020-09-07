@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Controller.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Lab_01.h" />
     <ClInclude Include="Resource.h" />
@@ -147,6 +148,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Lab_01.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="Stack.cpp" />

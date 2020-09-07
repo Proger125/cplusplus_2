@@ -129,7 +129,7 @@ Stack<T>::~Stack() {
 }
 template <typename T>
 bool Stack<T>::IsEmpty() {
-  return size_ > 0;
+  return size_ == 0;
 }
 template <typename T>
 int Stack<T>::Size() {
