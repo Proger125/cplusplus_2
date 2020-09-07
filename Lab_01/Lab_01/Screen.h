@@ -13,6 +13,10 @@ class Screen {
   HWND secondStackLabel;
   HWND hSumButton;
   HWND hSwapButton;
+  const int smallButtonWidth = 60;
+  const int smallButtonHeight = 30;
+  const int bigButtonWidth = 70;
+  const int bigButtonHeight = 40;
  public:
   Screen(string path);
   void SetElements(HDC hdc,const int screenWidth,const int screenHeight);

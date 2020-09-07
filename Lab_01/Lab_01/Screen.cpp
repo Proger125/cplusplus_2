@@ -5,12 +5,12 @@ void Screen::SetElements(HDC hdc,const int screenWidth,const int screenHeight) {
     HWND hwnd2;
     hwnd1 =
         CreateWindowA("button", buttonNames[i].data(), WS_CHILD | WS_VISIBLE,
-                      20, 50 + i * 60, 60, 20, GetActiveWindow(),
+                      20, 50 + i * 60, smallButtonWidth, smallButtonHeight, GetActiveWindow(),
                       (HMENU)(1000 + i), GetModuleHandle(NULL), NULL);
     firstStackButtons.push_back(hwnd1);
     hwnd2 =
         CreateWindowA("button", buttonNames[i].data(), WS_CHILD | WS_VISIBLE,
-                      screenWidth - 80, 50 + i * 60, 60, 20, GetActiveWindow(),
+                      screenWidth - 80, 50 + i * 60, smallButtonWidth, smallButtonHeight, GetActiveWindow(),
                       (HMENU)(1000 + 10 + i), GetModuleHandle(NULL), NULL);
     secondStackButtons.push_back(hwnd2);
   }
@@ -22,10 +22,10 @@ void Screen::SetElements(HDC hdc,const int screenWidth,const int screenHeight) {
                                   GetModuleHandle(NULL), NULL);
   hSumButton =
       CreateWindowA("button", "Sum", WS_CHILD | WS_VISIBLE,
-                    screenWidth / 2 - 30, 50, 60, 30, GetActiveWindow(),
+                    screenWidth / 2 - 30, 50, bigButtonWidth, bigButtonHeight, GetActiveWindow(),
                     (HMENU)(996), GetModuleHandle(NULL), NULL);
   hSwapButton = CreateWindowA(
-      "button", "Swap", WS_CHILD | WS_VISIBLE, screenWidth / 2 - 30, 90, 60, 30,
+      "button", "Swap", WS_CHILD | WS_VISIBLE, screenWidth / 2 - 30, 110, bigButtonWidth, bigButtonHeight,
       GetActiveWindow(), (HMENU)(997), GetModuleHandle(NULL), NULL);
 }
 Screen::Screen(string path) {

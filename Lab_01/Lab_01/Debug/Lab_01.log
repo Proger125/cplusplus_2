@@ -1,7 +1,7 @@
 ﻿  Lab_01.cpp
   Screen.cpp
-E:\Универ\2 курс\Прога\Lab_01\Lab_01\Screen.cpp(3,21): warning C4018: <: несоответствие типов со знаком и без знака
-E:\Универ\2 курс\Прога\Lab_01\Lab_01\Screen.cpp(41,21): warning C4018: <: несоответствие типов со знаком и без знака
-E:\Универ\2 курс\Прога\Lab_01\Lab_01\Screen.cpp(44,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Lab_01\Lab_01\Screen.cpp(3,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Lab_01\Lab_01\Screen.cpp(41,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Lab_01\Lab_01\Screen.cpp(44,21): warning C4018: <: несоответствие типов со знаком и без знака
   Создание кода...
-  Lab_01.vcxproj -> E:\Универ\2 курс\Прога\Lab_01\Debug\Lab_01.exe
+  Lab_01.vcxproj -> C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Lab_01\Debug\Lab_01.exe
