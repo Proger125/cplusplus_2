@@ -70,6 +70,20 @@ void Screen::DestroyElements() {
 void Screen::ButtonClick(int clickType) {
   int type = (clickType / 10) % 10;
   switch (clickType) {
+    case 996: {
+      controller.StacksSum();
+      string StackToString = controller.ToString(0);
+      ShowStackText(StackToString, 0);
+      break;
+    }
+    case 997: {
+      controller.StacksSwap();
+      string Stack1ToString = controller.ToString(0);
+      string Stack2ToString = controller.ToString(1);
+      ShowStackText(Stack1ToString, 0);
+      ShowStackText(Stack2ToString, 1);
+      break;
+    }
     case 1000:
     case 1010: {
       controller.StackConstructor(type);
@@ -87,6 +101,8 @@ void Screen::ButtonClick(int clickType) {
     case 1001:
     case 1011: {
       controller.StackClear(type);
+      string StackToString = controller.ToString(type);
+      ShowStackText(StackToString, type);
       break;
     }
     case 1002:
@@ -121,6 +137,8 @@ void Screen::ButtonClick(int clickType) {
     case 1005:
     case 1015: {
       controller.StackPop(type);
+      string StackToString = controller.ToString(type);
+      ShowStackText(StackToString, type);
       break;
     }
     case 1006:
@@ -136,9 +154,18 @@ void Screen::ButtonClick(int clickType) {
          element = atoi(str);
        }
       controller.StackPush(type, element);
+       string StackToString = controller.ToString(type);
+       ShowStackText(StackToString, type);
       break;
     }
     default:
       break;
+  }
+}
+void Screen::ShowStackText(string text, int type) {
+  if (type == 0) {
+    SetWindowTextA(firstStackLabel, text.data());
+  } else {
+    SetWindowTextA(secondStackLabel, text.data());
   }
 }

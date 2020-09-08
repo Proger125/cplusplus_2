@@ -3,6 +3,7 @@
 #include <iostream>
 #include <istream>
 #include <ostream>
+#include <string>
 using namespace std;
 template <typename T, typename U>
 class StackIterator {

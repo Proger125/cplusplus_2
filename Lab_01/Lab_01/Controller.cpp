@@ -41,3 +41,19 @@ void Controller::StackPush(int type, int element) {
   }
   rightStack->Push(element);
 }
+string Controller::ToString(int type) {
+  string result;
+  StackIterator<int, Stack<int> > *it;
+  if (type == 0) {
+    it = this->leftStack->createIterator();
+  } else {
+    it = this->rightStack->createIterator();
+  }
+  for (it->First(); !it->IsDone(); it->Next()) {
+    string item = to_string(it->currentItem());
+    result += item + " ";
+  }
+  return result;
+}
+void Controller::StacksSum() { *leftStack = *leftStack + *rightStack; }
+void Controller::StacksSwap() { leftStack->Swap(*rightStack); }

@@ -29,4 +29,5 @@ class Screen {
   void SetElements(HDC hdc,const int screenWidth,const int screenHeight);
   void DestroyElements();
   void ButtonClick(int clickType);
+  void ShowStackText(string text, int type);
 };

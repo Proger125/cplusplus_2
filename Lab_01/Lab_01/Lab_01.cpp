@@ -9,22 +9,7 @@
 #include "framework.h"
 
 #define MAX_LOADSTRING 100
-// static HWND hPushButton1;
-// static HWND hPopButton1;
-// static HWND hClearButton1;
-// static HWND hIsEmptyButton1;
-// static HWND hTopButton1;
-// static HWND hSizeButton1;
-// static HWND hCreateButton1;
-// static HWND hPushButton2;
-// static HWND hPopButton2;
-// static HWND hClearButton2;
-// static HWND hIsEmptyButton2;
-// static HWND hTopButton2;
-// static HWND hSizeButton2;
-// static HWND hCreateButton2;
-// static HWND hSumButton;
-// static HWND hSwapButton;
+
 // Глобальные переменные:
 HINSTANCE hInst;                // текущий экземпляр
 WCHAR szTitle[MAX_LOADSTRING];  // Текст строки заголовка
@@ -145,7 +130,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
       int wmId = LOWORD(wParam);
       if (wmId >= 996 && wmId <= 1017) {
         screen.ButtonClick(wmId);
-        UpdateWindow(hWnd);
       }
       // Разобрать выбор в меню:
       switch (wmId) {

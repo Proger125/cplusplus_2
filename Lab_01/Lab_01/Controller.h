@@ -13,4 +13,7 @@ class Controller {
   int StackTop(int type);
   void StackPop(int type);
   void StackPush(int type, int element);
+  string ToString(int type);
+  void StacksSum();
+  void StacksSwap();
 };
