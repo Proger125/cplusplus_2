@@ -55,5 +55,5 @@ string Controller::ToString(int type) {
   }
   return result;
 }
-void Controller::StacksSum() { *leftStack = *leftStack + *rightStack; }
+void Controller::StacksSum() { *leftStack += *rightStack; }
 void Controller::StacksSwap() { leftStack->Swap(*rightStack); }

@@ -126,6 +126,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
       screenWidth = LOWORD(lParam);
       screenHeight = HIWORD(lParam);
     } break;
+    case WM_CREATE: {
+      MoveWindow(hWnd, 0, 0, 1200, 700, NULL);
+      break;
+    }
     case WM_COMMAND: {
       int wmId = LOWORD(wParam);
       if (wmId >= 996 && wmId <= 1017) {
