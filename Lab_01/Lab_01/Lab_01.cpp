@@ -2,9 +2,7 @@
 //
 
 #include "Lab_01.h"
-
-#include "Screen.h"
-#include "Stack.h"
+#include "Controller.h"
 #include "Windows.h"
 #include "framework.h"
 
@@ -118,7 +116,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
                          LPARAM lParam) {
-  static Screen screen("input.txt");
+  static StackModel model;
+  static Screen screen("input.txt", &model);
+  static Controller controller(&model, &screen);
   static int screenWidth;
   static int screenHeight;
   switch (message) {
@@ -133,7 +133,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
     case WM_COMMAND: {
       int wmId = LOWORD(wParam);
       if (wmId >= 996 && wmId <= 1017) {
-        screen.ButtonClick(wmId);
+        controller.ButtonClick(wmId);
       }
       // Разобрать выбор в меню:
       switch (wmId) {

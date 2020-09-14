@@ -1,2 +1,11 @@
-﻿  Lab_01.cpp
+﻿  Controller.cpp
+  Lab_01.cpp
+  Screen.cpp
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Lab_01\Lab_01\Screen.cpp(4,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Lab_01\Lab_01\Screen.cpp(62,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Lab_01\Lab_01\Screen.cpp(65,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Lab_01\Lab_01\Screen.cpp(73,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Lab_01\Lab_01\Screen.cpp(78,23): warning C4018: <: несоответствие типов со знаком и без знака
+  StackModel.cpp
+  Создание кода...
   Lab_01.vcxproj -> C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Lab_01\Debug\Lab_01.exe

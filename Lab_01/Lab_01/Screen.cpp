@@ -34,21 +34,20 @@ void Screen::SetElements(HDC hdc, const int screenWidth,
   firstStackPushEdit = CreateWindowA(
       "edit", "0", WS_CHILD | WS_VISIBLE | WS_BORDER | ES_RIGHT, 120, 410, 30,
       30, GetActiveWindow(), (HMENU)(995), GetModuleHandle(NULL), NULL);
-  secondStackPushEdit = CreateWindowA(
-      "edit", "0", WS_CHILD | WS_VISIBLE | WS_BORDER | ES_RIGHT, screenWidth - 150, 410, 30,
-      30, GetActiveWindow(), (HMENU)(995), GetModuleHandle(NULL), NULL);
+  secondStackPushEdit =
+      CreateWindowA("edit", "0", WS_CHILD | WS_VISIBLE | WS_BORDER | ES_RIGHT,
+                    screenWidth - 150, 410, 30, 30, GetActiveWindow(),
+                    (HMENU)(995), GetModuleHandle(NULL), NULL);
   hSumButton = CreateWindowA("button", "Sum", WS_CHILD | WS_VISIBLE,
                              screenWidth / 2 - 30, 50, bigButtonWidth,
                              bigButtonHeight, GetActiveWindow(), (HMENU)(996),
                              GetModuleHandle(NULL), NULL);
-  //EnableWindow(hSumButton, false);
   hSwapButton = CreateWindowA("button", "Swap", WS_CHILD | WS_VISIBLE,
                               screenWidth / 2 - 30, 110, bigButtonWidth,
                               bigButtonHeight, GetActiveWindow(), (HMENU)(997),
                               GetModuleHandle(NULL), NULL);
-  //EnableWindow(hSwapButton, false);
 }
-Screen::Screen(string path) {
+Screen::Screen(string path, StackModel *model) {
   ifstream fin(path);
   string line;
   while (!fin.eof()) {
@@ -56,6 +55,8 @@ Screen::Screen(string path) {
     buttonNames.push_back(line);
   }
   fin.close();
+  this->model = model;
+  this->model->addObserver(this);
 }
 void Screen::DestroyElements() {
   for (int i = 0; i < firstStackButtons.size(); i++) {
@@ -67,105 +68,39 @@ void Screen::DestroyElements() {
   DestroyWindow(hSumButton);
   DestroyWindow(hSwapButton);
 }
-void Screen::ButtonClick(int clickType) {
-  int type = (clickType / 10) % 10;
-  switch (clickType) {
-    case 996: {
-      controller.StacksSum();
-      string StackToString = controller.ToString(0);
-      ShowStackText(StackToString, 0);
-      break;
+void Screen::CreateViews(int type) {
+  if (type == 0) {
+    for (int i = 0; i < firstStackButtons.size(); i++) {
+      EnableWindow(firstStackButtons[i], true);
     }
-    case 997: {
-      controller.StacksSwap();
-      string Stack1ToString = controller.ToString(0);
-      string Stack2ToString = controller.ToString(1);
-      ShowStackText(Stack1ToString, 0);
-      ShowStackText(Stack2ToString, 1);
-      break;
+    EnableWindow(firstStackButtons[0], false);
+  } else {
+    for (int i = 0; i < secondStackButtons.size(); i++) {
+      EnableWindow(secondStackButtons[i], true);
     }
-    case 1000:
-    case 1010: {
-      controller.StackConstructor(type);
-      for (int i = 0; i < firstStackButtons.size(); i++) {
-        if (type == 0) {
-          EnableWindow(firstStackButtons[i], true);
-          EnableWindow(firstStackButtons[0], false);
-        } else {
-          EnableWindow(secondStackButtons[i], true);
-          EnableWindow(secondStackButtons[0], false);
-        }
-      }
-      break;
-    }
-    case 1001:
-    case 1011: {
-      controller.StackClear(type);
-      string StackToString = controller.ToString(type);
-      ShowStackText(StackToString, type);
-      break;
-    }
-    case 1002:
-    case 1012: {
-      bool IsEmpty = controller.StackIsEmpty(type);
-      string result;
-      if (IsEmpty) {
-        result = "true";
-      } else {
-        result = "false";
-      }
-      SetWindowTextA(this->bothLable, result.data());
-      UpdateWindow(GetActiveWindow());
-      break;
-    }
-    case 1003:
-    case 1013: {
-      int size = controller.StackSize(type);
-      char buf[10];
-      _itoa_s(size, buf, 10);
-      SetWindowTextA(this->bothLable, buf);
-      break;
-    }
-    case 1004:
-    case 1014: {
-      int element = controller.StackTop(type);
-      char buf[10];
-      _itoa_s(element, buf, 10);
-      SetWindowTextA(this->bothLable, buf);
-      break;
-    }
-    case 1005:
-    case 1015: {
-      controller.StackPop(type);
-      string StackToString = controller.ToString(type);
-      ShowStackText(StackToString, type);
-      break;
-    }
-    case 1006:
-    case 1016:{
-      int len;
-      char str[20];
-      int element;
-       if (type == 0) {
-        len = GetWindowTextA(firstStackPushEdit, str, 20);
-        element = atoi(str);
-       } else {
-         len = GetWindowTextA(secondStackPushEdit, str, 20);
-         element = atoi(str);
-       }
-      controller.StackPush(type, element);
-       string StackToString = controller.ToString(type);
-       ShowStackText(StackToString, type);
-      break;
-    }
-    default:
-      break;
+    EnableWindow(secondStackButtons[0], false);
   }
 }
-void Screen::ShowStackText(string text, int type) {
+void Screen::SetText(string text) {
+  SetWindowTextA(this->bothLable, text.data());
+}
+int Screen::GetPushElement(int type) {
+  int len;
+  char str[20];
+  int element;
   if (type == 0) {
-    SetWindowTextA(firstStackLabel, text.data());
+    len = GetWindowTextA(firstStackPushEdit, str, 20);
+    element = atoi(str);
   } else {
-    SetWindowTextA(secondStackLabel, text.data());
+    len = GetWindowTextA(secondStackPushEdit, str, 20);
+    element = atoi(str);
+  }
+  return element;
+}
+void Screen::update(int type) {
+  if (type == 0) {
+    SetWindowTextA(firstStackLabel, model->ToString(0).data());
+  } else {
+    SetWindowTextA(secondStackLabel, model->ToString(1).data());
   }
 }
