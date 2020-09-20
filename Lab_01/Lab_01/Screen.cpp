@@ -47,7 +47,7 @@ void Screen::SetElements(HDC hdc, const int screenWidth,
                               bigButtonHeight, GetActiveWindow(), (HMENU)(997),
                               GetModuleHandle(NULL), NULL);
 }
-Screen::Screen(string path, StackModel *model) {
+Screen::Screen(string path, StackModel<int> *model) {
   ifstream fin(path);
   string line;
   while (!fin.eof()) {

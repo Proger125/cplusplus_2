@@ -9,7 +9,7 @@ using namespace std;
 
 class Screen : public Observer {
  private:
-  StackModel *model;
+  StackModel<int> *model;
   const int smallButtonWidth = 60;
   const int smallButtonHeight = 30;
   const int bigButtonWidth = 70;
@@ -26,7 +26,7 @@ class Screen : public Observer {
   HWND bothLable;
 
  public:
-  Screen(string path, StackModel *model);
+  Screen(string path, StackModel<int> *model);
   void SetElements(HDC hdc,const int screenWidth,const int screenHeight);
   void DestroyElements();
   void CreateViews(int type);

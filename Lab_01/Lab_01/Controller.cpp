@@ -1,5 +1,5 @@
 #include "Controller.h"
-Controller::Controller(StackModel* model, Screen* screen) {
+Controller::Controller(StackModel<int>* model, Screen* screen) {
   this->model = model;
   this->screen = screen;
 }
@@ -94,6 +94,18 @@ void Controller::ButtonClick(int clickType) {
     case 1016: {
       int element = screen->GetPushElement(1);
       model->StackPush(1, element);
+      break;
+    }
+    case 1007: {
+      int sumOfElements = model->SumOfElements(0);
+      string text = to_string(sumOfElements);
+      screen->SetText(text);
+      break;
+    }
+    case 1017: {
+      int sumOfElements = model->SumOfElements(1);
+      string text = to_string(sumOfElements);
+      screen->SetText(text);
       break;
     }
     default:

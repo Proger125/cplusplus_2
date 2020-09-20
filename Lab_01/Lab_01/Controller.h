@@ -4,9 +4,9 @@
 
 class Controller {
  private:
-  StackModel *model;
+  StackModel<int> *model;
   Screen *screen;
  public:
-  Controller(StackModel *model, Screen* screen);
+  Controller(StackModel<int> *model, Screen* screen);
   void ButtonClick(int clickType);
 };

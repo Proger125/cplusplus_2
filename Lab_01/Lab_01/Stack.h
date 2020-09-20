@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 using namespace std;
+
+// Pattern Iterator
 template <typename T, typename U>
 class StackIterator {
  private:
@@ -16,6 +18,30 @@ class StackIterator {
   bool IsDone() { return index == stack->size_; }
   T currentItem() { return stack->data_[index]; }
 };
+
+
+
+// Pattern Visitor
+
+template <typename T, typename U>
+class SumVisitor{
+ private:
+  T sum;
+
+ public:
+  T GetSum() { return sum; }
+  virtual void visit(U* stack){
+    sum = 0;
+    StackIterator<T, U>* it = stack->createIterator();
+    for (it->First(); !it->IsDone(); it->Next()) {
+      this->sum += it->currentItem();
+    }
+  }
+};
+
+
+
+
 
 template <typename T>
 class Stack {
@@ -64,7 +90,17 @@ class Stack {
   Stack& operator+(Stack& stack);
   Stack& operator=(Stack& stack);
   Stack& operator=(Stack&& stack);
+
+  void accept(SumVisitor<T, Stack> &v);
 };
+
+
+
+
+template <typename T>
+void Stack<T>::accept(SumVisitor<T, Stack>& v) {
+  v.visit(this);
+}
 template <typename T>
 Stack<T>::Stack() {
   data_ = new T[10];

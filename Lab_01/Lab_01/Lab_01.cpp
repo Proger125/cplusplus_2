@@ -90,8 +90,10 @@ ATOM MyRegisterClass(HINSTANCE hInstance) {
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
   hInst = hInstance;  // Сохранить маркер экземпляра в глобальной переменной
 
-  HWND hWnd =
-      CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT,
+  HWND hWnd = CreateWindowW(
+      szWindowClass, szTitle,
+      WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX,
+      CW_USEDEFAULT,
                     0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
   if (!hWnd) {
@@ -116,7 +118,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
                          LPARAM lParam) {
-  static StackModel model;
+  static StackModel<int> model;
   static Screen screen("input.txt", &model);
   static Controller controller(&model, &screen);
   static int screenWidth;
