@@ -7,6 +7,7 @@ class Observer {
  public:
   virtual void update(int type) = 0;
 };
+
 class Observable {
  public:
   void addObserver(Observer* observer) { observers.push_back(observer); }

@@ -2,11 +2,21 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+
+
 using namespace std;
 
 // Pattern Iterator
+template <typename T>
+class Iterator {
+ protected:
+  virtual void First() = 0;
+  virtual void Next() = 0;
+  virtual bool IsDone() = 0;
+  virtual T currentItem() = 0;
+};
 template <typename T, typename U>
-class StackIterator {
+class StackIterator : public Iterator<T> {
  private:
   U* stack;
   int index;
@@ -21,16 +31,20 @@ class StackIterator {
 
 
 
-// Pattern Visitor
 
+// Pattern Visitor
 template <typename T, typename U>
-class SumVisitor{
+class Visitor {
+  virtual void visit(U* stack) = 0;
+};
+template <typename T, typename U>
+class SumVisitor : public Visitor<T, U> {
  private:
   T sum;
 
  public:
   T GetSum() { return sum; }
-  virtual void visit(U* stack){
+  virtual void visit(U* stack) {
     sum = 0;
     StackIterator<T, U>* it = stack->createIterator();
     for (it->First(); !it->IsDone(); it->Next()) {
@@ -38,7 +52,6 @@ class SumVisitor{
     }
   }
 };
-
 
 
 
