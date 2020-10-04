@@ -7,4 +7,5 @@ C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Lab_01\Lab_01\Screen.cp
 C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Lab_01\Lab_01\Screen.cpp(73,23): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Lab_01\Lab_01\Screen.cpp(78,23): warning C4018: <: несоответствие типов со знаком и без знака
   Создание кода...
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Lab_01\Lab_01\Stack.h(205): warning C4715: Stack<int>::Top: значение возвращается не при всех путях выполнения
   Lab_01.vcxproj -> C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Lab_01\Debug\Lab_01.exe

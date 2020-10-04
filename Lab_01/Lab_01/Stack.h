@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 
-
 using namespace std;
 
 // Pattern Iterator
@@ -22,20 +21,20 @@ class StackIterator : public Iterator<T> {
   int index;
 
  public:
-  StackIterator(U* stack1) { stack = stack1; }
+  StackIterator(U* stack1) {
+    stack = stack1;
+    index = 0;
+  }
   void First() { index = 0; }
   void Next() { index++; }
   bool IsDone() { return index == stack->size_; }
   T currentItem() { return stack->data_[index]; }
 };
 
-
-
-
 // Pattern Visitor
 template <typename T, typename U>
 class Visitor {
-  virtual void visit(U* stack) = 0;
+  virtual void visit(U* stack) = 0; 
 };
 template <typename T, typename U>
 class SumVisitor : public Visitor<T, U> {
@@ -52,9 +51,6 @@ class SumVisitor : public Visitor<T, U> {
     }
   }
 };
-
-
-
 
 template <typename T>
 class Stack {
@@ -90,7 +86,7 @@ class Stack {
     delete it;
     return out;
   }
-  friend istream& operator>>(istream& in, Stack &stack) {
+  friend istream& operator>>(istream& in, Stack& stack) {
     for (int i = 0; i < stack.capacity_; i++) {
       in >> stack.data_[i];
     }
@@ -104,11 +100,8 @@ class Stack {
   Stack& operator=(Stack& stack);
   Stack& operator=(Stack&& stack);
 
-  void accept(SumVisitor<T, Stack> &v);
+  void accept(SumVisitor<T, Stack>& v);
 };
-
-
-
 
 template <typename T>
 void Stack<T>::accept(SumVisitor<T, Stack>& v) {
@@ -208,7 +201,7 @@ void Stack<T>::Push(T element) {
 template <typename T>
 T Stack<T>::Top() {
   if (size_ > 0) return data_[size_ - 1];
-  throw "Your stack is Empty";
+  //throw "Your stack is Empty";
 }
 template <typename T>
 T Stack<T>::Pop() {
@@ -216,7 +209,8 @@ T Stack<T>::Pop() {
     size_--;
     return data_[size_];
   }
-  throw "Your stack is empty";
+  //throw "Your stack is empty";
+  return 0;
 }
 template <typename T>
 void Stack<T>::Clear() {
@@ -300,17 +294,17 @@ bool Stack<T>::operator!=(Stack& stack) {
   }
   return true;
 }
- template <typename T>
- void Stack<T>::Swap(Stack& stack) {
+template <typename T>
+void Stack<T>::Swap(Stack& stack) {
   Stack<T> buffer_stack = stack;
-   stack.Clear();
+  stack.Clear();
   StackIterator<T, Stack>* it = this->createIterator();
-   for (it->First(); !it->IsDone(); it->Next()) {
+  for (it->First(); !it->IsDone(); it->Next()) {
     stack.Push(it->currentItem());
-   }
-   this->Clear();
-   it = buffer_stack.createIterator();
-   for (it->First(); !it->IsDone(); it->Next()) {
-     this->Push(it->currentItem());
-   }
- }
+  }
+  this->Clear();
+  it = buffer_stack.createIterator();
+  for (it->First(); !it->IsDone(); it->Next()) {
+    this->Push(it->currentItem());
+  }
+}
