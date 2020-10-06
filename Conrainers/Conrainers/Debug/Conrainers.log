@@ -1,2 +1,25 @@
 ﻿  Conrainers.cpp
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Conrainers\Conrainers\Stack.h(55,31): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Conrainers\Conrainers\Stack.h(49): message : во время компиляции функции-члена класс шаблон "Stack<int>::Stack(const std::initializer_list<T> &)"
+          with
+          [
+              T=int
+          ]
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Conrainers\Conrainers\Conrainers.cpp(4): message : выполняется компиляция ссылки на экземпляр шаблон функции "Stack<int>::Stack(const std::initializer_list<T> &)"
+          with
+          [
+              T=int
+          ]
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Conrainers\Conrainers\Conrainers.cpp(4): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "Stack<int>"
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Conrainers\Conrainers\Stack.h(98,1): warning C4244: *=: преобразование "double" в "int", возможна потеря данных
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Conrainers\Conrainers\Stack.h(89): message : во время компиляции функции-члена класс шаблон "void Stack<int>::Push(T)"
+          with
+          [
+              T=int
+          ]
+C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Conrainers\Conrainers\Conrainers.cpp(16): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Stack<int>::Push(T)"
+          with
+          [
+              T=int
+          ]
   Conrainers.vcxproj -> C:\Users\Lenovo\Documents\GitHub\cplusplus_2\cplusplus_2\Conrainers\Debug\Conrainers.exe

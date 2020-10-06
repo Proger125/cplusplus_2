@@ -49,6 +49,9 @@ class Element {
 
   bool operator==(const Element<T>& element);
   bool operator!=(const Element<T>& element);
+  
+  
+  Element<T> operator=(const Element<T>& element);
 };
 template <typename T>
 Element<T>::Element() {
@@ -79,4 +82,9 @@ bool Element<T>::operator!=(const Element<T>& element) {
     return false;
   }
   return true;
+}
+template<typename T>
+Element<T> Element<T>::operator=(const Element<T>& element) {
+  this->value = element.value;
+  return *this;
 }

@@ -15,12 +15,12 @@ class Container {
   Container(const initializer_list<T>& list);
   Container(Container& container);
   Container(Container&& container);
-  ~Container();
+  virtual ~Container();
   virtual int Size();
   virtual bool IsEmpty();
   virtual void Clear();
+  virtual void Swap(Container<T>& container);
   virtual Element<T> GetElement(int index);
-
 
   virtual bool operator==(const Container<T>& container);
   virtual bool operator!=(const Container<T>& container);
@@ -34,13 +34,13 @@ class Container {
 
 template <typename T>
 Container<T>::Container() {
-  size = 0;
-  capacity = 10;
-  data = new Element<T>[capacity];
+  this->size = 0;
+  this->capacity = 10;
+  this->data = new Element<T>[this->capacity];
 }
 template <typename T>
 Container<T>::Container(Element<T>* arr, int size, int capapcity) {
-  data = arr;
+  this->data = arr;
   this->size = size;
   this->capacity = capacity;
 }
@@ -52,7 +52,7 @@ Container<T>::Container(const initializer_list<T>& list) {
   }
   this->size = i;
   this->capacity = this->size * 1.2;
-  this->data = new Element<T>[this->size];
+  this->data = new Element<T>[this->capacity];
   i = 0;
   for (auto it = list.begin(); it != list.end(); it++) {
     data[i] = (*it);
@@ -61,18 +61,18 @@ Container<T>::Container(const initializer_list<T>& list) {
 }
 template <typename T>
 Container<T>::Container(Container& container) {
-  size = container.size;
-  capacity = container.capacity;
-  this->data = new Element<T>[this->size];
+  this->size = container.size;
+  this->capacity = container.capacity;
+  this->data = new Element<T>[this->capacity];
   for (int i = 0; i < this->size; i++) {
-    data[i] = container.data[i];
+    this->data[i] = container.data[i];
   }
 }
 template <typename T>
 Container<T>::Container(Container&& container) {
-  size = container.size;
-  capacity = container.capacity;
-  this->data = new Element<T>[this->size];
+  this->size = container.size;
+  this->capacity = container.capacity;
+  this->data = new Element<T>[this->capacity];
   for (int i = 0; i < this->size; i++) {
     data[i] = container.data[i];
   }
@@ -135,7 +135,7 @@ template <typename T>
 Container<T> Container<T>::operator=(const Container<T>& container) {
   this->size = container.size;
   this->capacity = container.capacity;
-  this->data = new Element<T>[this->size];
+  this->data = new Element<T>[this->capacity];
   for (int i = 0; i < this->size; i++) {
     data[i] = container.data[i];
   }
@@ -145,7 +145,7 @@ template <typename T>
 Container<T> Container<T>::operator=(Container<T>&& container) {
   this->size = container.size;
   this->capacity = container.capacity;
-  this->data = new Element<T>[this->size];
+  this->data = new Element<T>[this->capacity];
   for (int i = 0; i < this->size; i++) {
     data[i] = container.data[i];
   }
@@ -189,4 +189,11 @@ Container<T> Container<T>::operator+=(const Container<T>& container) {
     this->data[i] = container.data[i - size];
   }
   return *this;
+}
+template <typename T>
+void Container<T>::Swap(Container<T>& container) {
+  Container<T> temp = container;
+  container.Clear();
+  container = *this;
+  *this = temp;
 }
